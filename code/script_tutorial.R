@@ -13,3 +13,6 @@ median(x)
 ## estimate SD
 sd(x)
 
+## assign a vector of 1, 3, 5 to "v"
+v <- c(1,3,5)
+
