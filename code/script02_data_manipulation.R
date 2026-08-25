@@ -36,3 +36,9 @@ iris_pw <- select(iris_sub, c(Petal.Width, Species))
 iris_petal <- select(iris_pw, starts_with("Petal"))
 iris_pw_two <- mutate(iris_petal, sl_two_times = 2*Petal.Width)
 
+df_vir <- filter(iris_sub, Species == "virginica")
+df_vir_sl <- select(df_vir, Sepal.Length)
+
+df_vir_sl <- iris_sub %>%
+  filter(Species == "virginica") %>%
+  select(Sepal.Length)
