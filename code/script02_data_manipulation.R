@@ -34,7 +34,7 @@ mutate(iris_sub, sl_two_times = 2*Sepal.Length)
 
 iris_pw <- select(iris_sub, c(Petal.Width, Species))
 iris_petal <- select(iris_pw, starts_with("Petal"))
-iris_pw_two <- mutate(iris_petal, sl_two_times = 2*Petal.Width)
+iris_pw_two <- mutate(iris_petal, pl_two_times = 2*Petal.Width)
 
 df_vir <- filter(iris_sub, Species == "virginica")
 df_vir_sl <- select(df_vir, Sepal.Length)
@@ -42,3 +42,81 @@ df_vir_sl <- select(df_vir, Sepal.Length)
 df_vir_sl <- iris_sub %>%
   filter(Species == "virginica") %>%
   select(Sepal.Length)
+
+iris_pipe <- iris_sub %>%
+  filter(Species == "setosa") %>%
+  mutate(pw_two_times = 2*Petal.Width)
+
+iris_sub %>%
+  group_by(Species) %>%
+  summarize(mu_sl = mean(Sepal.Length),
+            sum_sl = sum(Sepal.Length))
+
+iris_sub_2 <- iris_sub %>% 
+  group_by(Species) %>% 
+  mutate(mu_sl = mean(Sepal.Length)) %>% 
+  ungroup()
+
+iris_w <- iris_sub %>%
+  mutate(id = rep(1:3,3)) %>%
+  select(id, Sepal.Length, Species) %>%
+  pivot_wider(id_cols = "id",
+              values_from = "Sepal.Length",
+              names_from = "Species")
+print(iris_w)
+
+iris_l <- iris_w %>%
+  pivot_longer(cols = c("setosa",
+                        "versicolor",
+                        "virginica"),
+               names_to = "Species",
+               values_to = "Sepal.Length")
+print(iris_l)
+
+df1 <- tibble(Species = c("A", "B", "C"),
+              x=c(1,2,3))
+
+df2 <- tibble(Species = c("A","B","C"),
+              y=c(4,5,6))
+
+left_join(x=df1,
+          y=df2,
+          by="Species")
+
+df3 <- tibble(Species = c("A","A","B","C"),
+              y=c(4,5,6,7))
+
+left_join(x = df1,
+          y=df3,
+          by="Species")
+
+df4 <- tibble(Species = c("A","A","C"),
+              y=c(4,5,7))
+
+left_join(x=df1,
+          y=df4,
+          by="Species")
+
+df5 <- tibble(Species = c("A","B","C"),
+              x=c(1,2,3),
+              z=c("cool","awesome","magical"))
+
+left_join(x=df1,
+          y=df5,
+          by=c("Species","x"))
+
+df6 <- tibble(Species=c("A","A","B","C"),
+              x=c(1,1,2,3),
+              z=c("cool","cool","awesome","magical"))
+
+left_join(x=df1,
+          y=df6,
+          by=c("Species","x"))
+
+df6 <- tibble(Species=c("A","B","C"),
+              x=c(1,2,4),
+              z=c("cool","awesome","magical"))
+
+left_join(x=df1,
+          y=df6,
+          by=c("Species","x"))
