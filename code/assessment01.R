@@ -67,7 +67,7 @@ colnames(df_mtcars)
 # 9: Extract the row names of the `mtcars` dataset using `rownames()`.  
 # Assign the result to `v_make`.
 
-v_make <- rownames(df_mtcars)
+v_make <- rownames(mtcars)
 
 # 10: Add `v_make` as a new column to `df_mtcars` and name the column `"make"`.
 
@@ -122,6 +122,9 @@ h_make <- df_mtcars %>%
   filter(cyl == 6) %>%
   arrange(desc(wt))
 
+## created a new object, maybe unnecessarily but the heaviest car will be at the top
+## of h_make
+
 # 18: Create a histogram showing the distribution of 1/4 mile time (`qsec`).
 
 df_mtcars %>%
@@ -139,9 +142,16 @@ df_mtcars %>%
 df_l <- read_csv("data_src/data_length_assess01.csv")
 df_w <- read_csv("data_src/data_weight_assess01.csv")
 
-df_fish <- left_join(x = df_1,
-            y = df_w,
-            by = c("species","individual"))
+df_fish <- left_join(x = df_l,
+          y = df_w,
+          by = c("species","individual"))
 
 # 20: Draw a scatter plot (point plot) of `length` vs. `weight` from `df_fish`,  
 # coloring the points by `species`
+
+df_fish %>%
+  ggplot(mapping = aes(x=length,
+                       y=weight,
+                       color=species)
+         ) +
+  geom_point()
