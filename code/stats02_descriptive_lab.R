@@ -4,6 +4,8 @@ library(tidyverse)
 
 # central tendency --------------------------------------------------------
 
+# Z calculations for central tendency & histogram
+
 z <- exp(rnorm(n = 100, mean = 0, sd = 0.1))
 
 mu_z <- sum(z) / length(z)
@@ -21,6 +23,8 @@ t_z %>%
   geom_vline(xintercept = med_z, color = "green") +
   geom_vline(xintercept = mu_z, color = "blue") +
   geom_vline(xintercept = mu_z_ge, color = "red")
+
+# Z_Rev calculations for central tendency
 
 z_rev <- -z + max(z) + 0.5
 
@@ -46,6 +50,8 @@ w <- rnorm(100, mean = 10, sd = 1)
 
 m <- w*1000
 
+#SD & MAD for W & M
+
 var_w <- (sum((w - mean(w))^2)) / length(w)
 sd_w <- sqrt(var_w)
 
@@ -57,6 +63,8 @@ mad_w <- median(ad_w)
 
 ad_m <- abs(m - median(m))
 mad_m <- median(ad_m)
+
+#Coefficient of variance
 
 mu_w <- sum(w) / length(w)
 cv_w <- sd_w / mu_w
