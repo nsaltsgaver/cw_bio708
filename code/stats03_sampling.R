@@ -1,3 +1,7 @@
+
+# sample assignment -------------------------------------------------------
+
+
 # Sampling
 
 rm(list = ls())
@@ -55,19 +59,6 @@ for (i in 1:1000) {
   
   var_i[i] <- sum((df_i$height - mu_i[i])^2) / nrow(df_i)
 }
-
-## randomly sample 10 individuals
-
-df_i <- df_h0 %>%
-  sample_n(size = 10)
-
-# mean for subset
-
-mu_i <- mean(df_i$height)
-
-# variance for subset
-
-var_i <- sum((df_i$height - mu_i)^2) / nrow(df_i)
 
 library(patchwork)
 
