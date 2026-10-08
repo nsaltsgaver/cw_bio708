@@ -2,7 +2,7 @@
 
 pacman::p_load(tidyverse)
 rm(list=ls())
-install.packages("pwr")
+install.packages("pwr", repos = "https://r-project.org")
 library(pwr)
 
 distinct(PlantGrowth, group)
