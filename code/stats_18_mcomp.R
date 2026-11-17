@@ -108,3 +108,6 @@ AIC(m2)
 
 AIC(m_pois0)
 AIC(m_pois1)
+
+## when you see |AIC1 - AIC2| > 2, their model's predictive capacities are
+## meaningfully different
