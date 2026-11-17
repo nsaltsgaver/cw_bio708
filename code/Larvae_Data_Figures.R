@@ -20,7 +20,7 @@ First_Data <- read_excel(path, sheet = "1st_Time_To_2nd") |>
   pivot_longer(everything(), names_to = "cup", values_to = "days") |>
   drop_na(days) |>
   mutate(
-    treatment = factor(ifelse(grepl("C-", cup), "26°C", "30°C")),
+    treatment = factor(ifelse(grepl("C-", cup), "26C", "30C")),
     cup = factor(cup)
   )
 
@@ -28,7 +28,7 @@ Second_Data <- read_excel(path, sheet = "2nd_Time_To_4th") |>
   pivot_longer(everything(), names_to = "cup", values_to = "days") |>
   drop_na(days) |>
   mutate(
-    treatment = factor(ifelse(grepl("CL", cup), "26°C", "30°C")),
+    treatment = factor(ifelse(grepl("CL", cup), "26C", "30C")),
     cup = factor(cup)
   )
 
@@ -36,7 +36,7 @@ Pupae_Data <- read_excel(path, sheet = "Pupae_Time_To_Adult") |>
   pivot_longer(everything(), names_to = "cup", values_to = "days") |>
   drop_na(days) |>
   mutate(
-    treatment = factor(ifelse(grepl("PC", cup), "26°C", "30°C")),
+    treatment = factor(ifelse(grepl("PC", cup), "26C", "30C")),
     cup = factor(cup)
   )
 
@@ -71,7 +71,7 @@ n_range <- range(c(
 ))
 n_breaks <- unique(round(seq(n_range[1], n_range[2], length.out = 4)))
 
-trt_cols <- c("26°C" = "#4C78A8", "30°C" = "#E07B39")
+trt_cols <- c("26C" = "#4C78A8", "30C" = "#E07B39")
 
 plot_days <- function(dat, title, p) {
   cup_means <- dat |>
