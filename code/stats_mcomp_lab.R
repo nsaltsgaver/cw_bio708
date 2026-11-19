@@ -30,6 +30,8 @@ penguins_clean <- penguins_clean %>%
 
 ## full model for model selection with dredge
 
+library(MuMIn)
+
 m <- glm(clutch_completion ~ species + culmen_length_mm + 
            culmen_depth_mm + flipper_length_mm + body_mass_g + sex,
          data=penguins_clean,
